@@ -1,0 +1,36 @@
+#Author: Nicolas Frederico - 212118
+#Keywords Summary:
+#Feature: List of scenarios
+#Scenario: Business rule through list of seps with arguments
+#Given: Some precondition step
+#When: Some key actions
+#Then: To observe outcomes or validation
+#And,But: To enumerate more Given,When,Then steps
+#Scenario Outline: List of steps for data-driven as an Examples and <placeholder>
+#Examples: Container for s table
+#Background: List of steps run before each of the scenarios
+#""" (Doc Strings)
+#| (Data Tables)
+#@ (Tag/Labels):To group Scenarios
+#<> (plaeholder)
+#""
+## (Comments)
+#Funcionalidade de Conta
+
+@tag
+Feature: Cliente faz saque de dinheiro como um cliente,
+  eu gostaria de sacar dinheiro em um caixa eletrônico,
+  para que eu não tenha que esperar uma fila no banco.
+
+  @tag1
+  Scenario: Cliente especial com saldo negativo
+    Given Um cliente especial com saldo de -200 reais
+    When for solicitado um saque no valor de 100 reais
+    Then deve efetuar o saque e atualizar o saldo da conta para -300 reais
+    And check more outcomes
+
+  @tag2
+  Scenario Outline: Cliente comum com saldo negativo
+    Given Um cliente comum com saldo atual de -200 reais
+    When solicitar um saque de 200 reais
+    Then não deve efetuar o saque e deve retornar a mensagem de Saldo Insuficiente
